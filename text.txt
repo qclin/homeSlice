@@ -1,0 +1,6 @@
+San+Francisco,+CA/@37.7577,-122.4376,
+New+York,+NY/@40.7033127,-73.979681
+
+https://maps.googleapis.com/maps/api/streetview?size=600x300&location=44.000000,-73.0000000&heading=151.78&pitch=-0.76
+
+https://maps.googleapis.com/maps/api/streetview?size=1200x300&location=40.703312,-73.979681&pitch=0&heading=-90&fov=90
