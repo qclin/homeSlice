@@ -1,5 +1,6 @@
 var map;
 function initialize() {
+  
   var mapOptions = {
     zoom: 15,
     center: new google.maps.LatLng(40, -100),
@@ -15,3 +16,4 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+

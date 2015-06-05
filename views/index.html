@@ -20,5 +20,15 @@
   <body onload = "init();">
     <div id="map-canvas"></div>
     <canvas id = "canvas"></canvas>
+
+    <div id = "enterTheVoid" onclick="gotoStreetView()">
+    
+      <script>
+      function gotoStreetView(){
+        window.location.assign("http://localhost:3000/gotoStreetView");
+      }
+      </script>
+    </div>
+
   </body>
 </html>

@@ -210,6 +210,7 @@ function circle(){
   stage.addChild(orb);
 }
 
+
 // function updateCanvasSize() {
 //     canvas.width = window.innerWidth;
 //     canvas.height = window.innerHeight;
