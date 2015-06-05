@@ -1,12 +1,19 @@
 {
   "name": "halfslice",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qclin/homeSlice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qclin/homeSlice/issues"
+  },
+  "homepage": "https://github.com/qclin/homeSlice"
 }
