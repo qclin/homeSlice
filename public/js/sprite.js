@@ -1,15 +1,16 @@
 var canvas, stage, w, h, loader;
-var prince, puff, puff2, puff3, puff4, puff5;
-var lfHeld, rtHeld, upHeld, dnHeld, drCir; 
+var jaffar, puff, puff2, puff3, puff4, puff5;
+var lfHeld, rtHeld, upHeld, dnHeld, sendFire; 
+var puffins, puffSheet, characters; 
+var radars;
+var tweens, activeCount;
+var flareCount = 10;
 var keyDn = false; 
 
-var img = new Image();
-img.crossOrigin="Anonymous";
+
 
 function init(){
-  //$('.circle').html = "";
   createjs.MotionGuidePlugin.install(createjs.Tween);
-
   canvas = $('#canvas')[0];
   stage = new createjs.Stage(canvas);
 
@@ -17,45 +18,46 @@ function init(){
   canvas.height = window.innerHeight;
   w = canvas.width;
   h = canvas.height;
+  tweens = [];
 
   manifest = [
     {id:"prince", src:"princeOfPersia.png"},
-    {id: "puff", src:"puff.png"}
+    {id: "puff", src:"puff.png"}, 
+    {id: "jaffar", src: "jaffar.png"}
   ];
 
   loader = new createjs.LoadQueue(false);
   loader.addEventListener("complete", handleImageLoad);
   loader.loadManifest(manifest, true, "../css/sprites/");
-  }
+}
 
 function handleImageLoad(e){
-  var princeData = {
+  var jaffarData = {
     framerate:10, 
-    images:[loader.getResult("prince")],
+    images:[loader.getResult("jaffar")],
     frames:{
-      count: 138, 
-      regX: 25, regY: 17.5, 
-      height: 45, width:35
+      count: 24, 
+      regX: 33, regY: 25, 
+      width:66, height: 50
     },
     animations:{
-      "wkRight":[0,10, "wkRight"],
-      "wkLeft":[11,18, "wkLeft"],
-      "wkUp": [ 19, 23, "wkUp"], 
-      "wkDown": [23,19, "wkDown"],
-
-      "pause": [7]
+      "wkRight":[0,6, "wkRight"],
+      "wkLeft":[7,12, "wkLeft"],
+      "wkUp": [ 13, 18, "wkUp"], 
+      "wkDown": [19,23, "wkDown"]
     }
   }
 
-  var princeSheet = new createjs.SpriteSheet(princeData); 
+  var jaffarSheet = new createjs.SpriteSheet(jaffarData); 
 
-  prince = new createjs.Sprite(princeSheet,"wkRight");
+  jaffar = new createjs.Sprite(jaffarSheet,"wkRight");
   //new createjs.SpriteSheetUtils.addFlippedFrames(spriteSheet, {wkLeft:["wkRight", true, false, "wkLeft"]});
-  prince.gotoAndStop("wkRight");
+  jaffar.gotoAndStop("wkRight");
 
-  prince.x = canvas.width/2; 
-  prince.y = canvas.height/2; 
-  stage.addChild(prince); 
+  jaffar.x = canvas.width/2; 
+  jaffar.y = canvas.height/2; 
+
+  stage.addChild(jaffar); 
 
 ////////// these are for Puff
   var puffData = {
@@ -71,94 +73,52 @@ function handleImageLoad(e){
       "wadlLf" : [5, 8, "wadlLf"]
     }
   }
-  var puffSheet = new createjs.SpriteSheet(puffData);
-  puff = new createjs.Sprite(puffSheet, "wadlRt"); 
-  puff.gotoAndPlay("wadlLf");
-  puff.y = canvas.width/5;
-  stage.addChild(puff); 
 
-  puff2 = new createjs.Sprite(puffSheet, "wadlRt"); 
-  puff2.gotoAndPlay("wadlRt");
-  puff2.x = w-445;
-  puff2.y = h-45;
-  stage.addChild(puff2); 
+  puffins = stage.addChild(new createjs.Container());
 
-  puff3 = new createjs.Sprite(puffSheet, "wadlRt"); 
-  puff3.gotoAndPlay("wadlRt");
-  puff3.x = w-345;
-  puff3.y = h-45;
-  stage.addChild(puff3); 
+  puffSheet = new createjs.SpriteSheet(puffData);
+  flypuff = new createjs.Sprite(puffSheet, "wadlRt"); 
+  flypuff.gotoAndPlay("wadlLf");
+  flypuff.y = canvas.width/5;
 
-  puff4 = new createjs.Sprite(puffSheet, "wadlRt"); 
-  puff4.gotoAndPlay("wadlRt");
-  puff4.x = w-245;
-  puff4.y = h-45;
-  stage.addChild(puff4); 
+  puffins.addChild(flypuff); 
 
-  puff5 = new createjs.Sprite(puffSheet, "wadlRt"); 
-  puff5.gotoAndPlay("wadlRt");
-  puff5.x = w-145;
-  puff5.y = h-45;
-  stage.addChild(puff5); 
-
-  var tween = createjs.Tween.get(puff).to({guide:{
+  for(i = 0; i< 6; i++){
+    puff = new createjs.Sprite(puffSheet, "wadlRt"); 
+    puff.gotoAndPlay("wadlRt");
+    puff.x = w-45;
+    puff.y = h-(45+(i*100));
+    puffins.addChild(puff); 
+  }
+  var tween = createjs.Tween.get(flypuff).to({guide:{
     path: [0,90, w/2, h/2, w-45, h-45],
     orient: true }},8000, 
     createjs.Ease.bounceInOut);
   
-////////////////////
 
-// for (i=0;i<90;i++){
-//   circle()
-// }
-      
   createjs.Ticker.timingMode = createjs.Ticker.RAF;
   createjs.Ticker.addEventListener("tick",tick);
 }
 function tick(e){
 
-  if(lfHeld){
-    prince.x -= 5; 
-  }
-  if(rtHeld){
-    prince.x += 5; 
-  }
-  if(dnHeld){
-    prince.y += 5; 
-  }
-  if(upHeld){
-    prince.y -= 5; 
-  }
-  if(lfHeld && keyDn == false){
-    prince.gotoAndPlay("wkLeft");
-    keyDn = true; 
-  }
-  if(rtHeld && keyDn == false){
-    prince.gotoAndPlay("wkRight");
-    keyDn = true; 
-  }
+  if(lfHeld){jaffar.x -= 5; }
+  if(rtHeld){jaffar.x += 5; }
+  if(dnHeld){jaffar.y += 5; }
+  if(upHeld){jaffar.y -= 5; }
+  if(lfHeld && keyDn == false){ 
+    jaffar.gotoAndPlay("wkLeft"); keyDn = true;}
+  if(rtHeld && keyDn == false){ 
+    jaffar.gotoAndPlay("wkRight"); keyDn = true; }
   if(dnHeld && keyDn == false){
-    prince.gotoAndPlay("wkDown");
-    keyDn = true; 
+    jaffar.gotoAndPlay("wkDown"); keyDn = true; }
+  if(upHeld && keyDn == false){ 
+    jaffar.gotoAndPlay("wkUp"); keyDn = true; }
+  if(sendFire){
+    liteIt();
   }
-  if(upHeld && keyDn == false){
-    prince.gotoAndPlay("wkUp");
-    keyDn = true; 
-  }
-  if(drCir){
-    var circle = new createjs.Shape();
-      circle.graphics.setStrokeStyle(15);
-      circle.graphics.beginStroke("#113355");
-      circle.graphics.drawCircle(0, 0, (4 + 1) * 4);
-      circle.x = prince.x;
-      circle.y = prince.y;
-      circle.compositeOperation = "lighter";
-      ///// the idea of having the circles generate an html div for later consumption
-      // $('<div class = "circle">').prependTo($('body'));
-      // $('.circle').eq(-1).append(circle);
-      // stage.addChild(circle);
-  }
+  if(sendFire && keyDn == false){
 
+  }
   // var deltaS = e.delta/ 1000; 
   // var position = puff.x + 150 * deltaS; 
   // var puffW = puff.getBounds().width * puff.scaleX; 
@@ -170,49 +130,63 @@ function tick(e){
 
 $(function() {
   $('body').keydown(function(e){
-      console.log(e.keyCode);
     if(!e){ var e = window.Event; }
     switch(e.keyCode){
-      case 32: drCir = true; break; 
+      case 32: sendFire = true; break; 
       case 37: lfHeld = true; break; 
       case 39: rtHeld = true; break; 
       case 38: upHeld = true; break; 
       case 40: dnHeld = true; break; 
     }
-
   });
 
   $('body').keyup(function(e){
-
     if(!e){ var e = window.Event; }
     switch(e.keyCode){
-      case 32:keyDn = false; drCir = false; break; 
-      case 37: prince.gotoAndStop('wkLeft');keyDn = false; lfHeld = false; break; 
-      case 39: prince.gotoAndStop('wkRight');keyDn = false; rtHeld = false; break; 
-      case 38: prince.gotoAndStop('wkUp');keyDn = false; upHeld = false; break; 
-      case 40: prince.gotoAndStop('wkDown');keyDn = false; dnHeld = false; break; 
+      case 32:keyDn = false; sendFire = false; break; 
+      case 37: jaffar.gotoAndStop('wkLeft');keyDn = false; lfHeld = false; break; 
+      case 39: jaffar.gotoAndStop('wkRight');keyDn = false; rtHeld = false; break; 
+      case 38: jaffar.gotoAndStop('wkUp');keyDn = false; upHeld = false; break; 
+      case 40: jaffar.gotoAndStop('wkDown');keyDn = false; dnHeld = false; break; 
     }
   }); 
 });
 
+function liteIt(){
+  radars = stage.addChild(new createjs.Container());
+  
+  for (i = 0; i< flareCount; i++){
+    var fire = new createjs.Shape();
+    fire.graphics.setStrokeStyle(15);
+    fire.graphics.beginStroke("#9c2a00");
+    fire.graphics.drawCircle(0, 0, (flareCount - 1));
+    fire.alpha = 1 - i * 0.02;
+    fire.compositeOperation = "lighter";
+    fire.x = jaffar.x; 
+    fire.y = jaffar.y;
 
+    var tween = createjs.Tween.get(fire).to({x: w, y: jaffar.y}, (0.5 + i * 0.04) * 1500, createjs.Ease.bounceOut).call(simmerDown);
+    tweens.push({tween: tween, flare: fire});
+    radars.addChild(fire);
+    activeCount = flareCount; 
+  }
 
-function circle(){
-  var color = ["GoldenRod","DarkKhaki","Maroon","OliveDrab","OrangeRed","Yellow"]
-  ranCol = color[Math.floor(Math.random()*color.length)]
-  var orb = new createjs.Shape();
-  orb.graphics.beginStroke(ranCol).drawCircle(0,0,Math.floor(Math.random()*45));
-  orb.x = Math.floor(Math.random()*w);
-  orb.y = Math.floor(Math.random()*h);
-  orb.compositeOperation = "lighter";
-  orb.alpha = .5;
-  //scared(orb)
-  stage.addChild(orb);
+  //now lets hit the puffins
+  var amt = puffins.getNumChildren();
+  for(i = 0; i< l; i++){
+    var child = puffins.getChildAt(i);
+    if(child.hitTest(fire.x, fire.y)){ 
+    }
+  }
+  
 }
 
 
-// function updateCanvasSize() {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-// }
+function simmerDown(){
+  activeCount --;
+  radars.removeAllChildren;
+}
+
+
+
 
