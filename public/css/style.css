@@ -2,27 +2,17 @@ html, body,#map-canvas{
   height: 100%;
   margin: 0px;
   padding: 0px;
-  
+  top: .1px;
 }
-canvas[resize]{
-    width: 100%;
-    height: 100%;
-}
-#map-canvas{
-/*  display: none;
-*/}
+
 #canvas{
   border: 5px solid red;
   position: absolute;
   background-color: transparent;
-  bottom: 100px;
+  top: .1px;
   z-index:10; 
+  margin: 0px;
+  padding: 0px;
 }
 
-#enterTheVoid{
-  width :1000px;
-  height:1000px;
-  background-color: red;
-  margin: auto;
-  position: relative;
-}
+

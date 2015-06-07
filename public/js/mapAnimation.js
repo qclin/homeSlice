@@ -2,20 +2,18 @@ var canvas, stage, w, h, loader;
 var jaffar, puff, puff2, puff3, puff4, puff5;
 var lfHeld, rtHeld, upHeld, dnHeld, sendFire; 
 var puffins, puffSheet, characters; 
-var radars;
+var radars, trap;
 var tweens, activeCount;
 var flareCount = 10;
 var keyDn = false; 
-
-
 
 function init(){
   createjs.MotionGuidePlugin.install(createjs.Tween);
   canvas = $('#canvas')[0];
   stage = new createjs.Stage(canvas);
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = $(window).width();
+  canvas.height = $(window).height();
   w = canvas.width;
   h = canvas.height;
   tweens = [];
@@ -23,7 +21,8 @@ function init(){
   manifest = [
     {id:"prince", src:"princeOfPersia.png"},
     {id: "puff", src:"puff.png"}, 
-    {id: "jaffar", src: "jaffar.png"}
+    {id: "jaffar", src: "jaffar.png"}, 
+    {id: "trap", src: "trap_tone.png"}
   ];
 
   loader = new createjs.LoadQueue(false);
@@ -32,14 +31,25 @@ function init(){
 }
 
 function handleImageLoad(e){
+  var trapData = {
+    framerate: 10, 
+    images:[loader.getResult("trap")],
+    frames:{ count:8, regX: 20, regY: 25, width: 40, height: 50}, 
+    animations: {
+      "static":[0,9, "static"],
+    }
+  }
+  var trapSheet = new createjs.SpriteSheet(trapData);
+  trap = new createjs.Sprite(trapSheet, "static");
+  trap.gotoAndPlay("static");
+  trap.x = w/7; trap.y = 4*h/5;
+  trap.scaleX = 1.5; trap.scaleY = 1; 
+  stage.addChild(trap);
+  
   var jaffarData = {
     framerate:10, 
     images:[loader.getResult("jaffar")],
-    frames:{
-      count: 24, 
-      regX: 33, regY: 25, 
-      width:66, height: 50
-    },
+    frames:{ count: 24, regX: 33, regY: 25, width:66, height: 50 },
     animations:{
       "wkRight":[0,6, "wkRight"],
       "wkLeft":[7,12, "wkLeft"],
@@ -54,8 +64,7 @@ function handleImageLoad(e){
   //new createjs.SpriteSheetUtils.addFlippedFrames(spriteSheet, {wkLeft:["wkRight", true, false, "wkLeft"]});
   jaffar.gotoAndStop("wkRight");
 
-  jaffar.x = canvas.width/2; 
-  jaffar.y = canvas.height/2; 
+  jaffar.x = w/2; jaffar.y = h/2; 
 
   stage.addChild(jaffar); 
 
@@ -119,6 +128,20 @@ function tick(e){
   if(sendFire && keyDn == false){
 
   }
+  if((trap.x - 5 < jaffar.x && jaffar.x < trap.x + 5) && (trap.y - 5< jaffar.y && jaffar.y < trap.y +5)){
+    window.location.assign("http://localhost:1234/theVoid");
+  }
+  if(jaffar.x == 0){
+    goEast();
+    jaffar.x = w/2;
+  }else if(jaffar.x == w){
+    goWest();
+    jaffar.x = w/2;
+  }
+
+  trap.on("click", function(e){
+    window.location.assign("http://localhost:1234/theVoid");
+  });
   // var deltaS = e.delta/ 1000; 
   // var position = puff.x + 150 * deltaS; 
   // var puffW = puff.getBounds().width * puff.scaleX; 
@@ -150,6 +173,7 @@ $(function() {
       case 40: jaffar.gotoAndStop('wkDown');keyDn = false; dnHeld = false; break; 
     }
   }); 
+  
 });
 
 function liteIt(){
@@ -173,12 +197,14 @@ function liteIt(){
 
   //now lets hit the puffins
   var amt = puffins.getNumChildren();
-  for(i = 0; i< l; i++){
-    var child = puffins.getChildAt(i);
-    if(child.hitTest(fire.x, fire.y)){ 
+  for(i = 0; i< amt; i++){
+    var onePuff = puffins.getChildAt(i);
+    var pt = onePuff.globalToLocal(radars.getChildAt(9).x, radars.getChildAt(9).y); 
+    if(onePuff.hitTest(pt.x, pt.y)){  
+      alert("hit"); puffins.removeChild(onePuff);
     }
+    radars.removeAllChildren;
   }
-  
 }
 
 

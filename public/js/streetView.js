@@ -18,13 +18,9 @@ function getIt(){
         lat: { mn: 35, mx: 70 },
         lng: { mn: 10, mx: 30 }
       },
-      { // japan & korea
-        lat: {mn: 30, mx: 45}, 
-        lng: {mn: 125, mx: 145}
-      },
-      { //taiwan
-        lat:{ mn:22, mx:25.1}, 
-        lng:{ mn:120, mx:122}
+      { // taiwan& japan & korea
+        lat: {mn: 22, mx: 45}, 
+        lng: {mn: 120, mx: 145}
       }, 
       { // australia 
         lat: {mn: -35, mx: -15},
@@ -36,9 +32,11 @@ function getIt(){
   var range = latLngRanges[Math.floor(Math.random() * latLngRanges.length)]
     lat = Math.random() * (range.lat.mx - range.lat.mn) + range.lat.mn;
     lng = Math.random() * (range.lng.mx - range.lng.mn) + range.lng.mn;
-    elseWhere = new google.maps.LatLng(lat, lng);
+    // static latlng for testing canvas animation 
+    elseWhere = new google.maps.LatLng(lat,lng);
 
     panoramaOptions = {
+      draggableCursor : "url(http://s3.amazonaws.com/besport.com_images/status-pin.png), auto;",
       position: elseWhere,
       pov: {
         heading: 165,
@@ -70,13 +68,29 @@ function getIt(){
         // try a different lat/lng
         setMapDetails();
         myPano = new google.maps.StreetViewPanorama(
-        document.getElementById('map-canvas'),
+        $('#map-canvas')[0],
         panoramaOptions);
         checkResults();
       } else {
-        // you win, render it
-        console.log(myPano.projection);
+        init(); // initing animation 
+        //street view hit something
+        /// changing mouse cursor options doesn't work
+        myPano.setOptions({  });
+        $('#map-canvas').eq(0).css({"cursor":"url('images/radish.png')"});
         myPano.setVisible(true);
+
+        var data = myPano.getLocation();
+        console.log(data);
+        var landed = JSON.stringify(data);
+        $.ajax({
+          method: 'POST',
+          url: '/stViewLocation',
+          dataType: 'json',
+          data:landed,
+          contentType:"application/json; charset=utf-8"
+        }).done (function(data){
+          console.log(data);
+        });
       }
     } else {
       // keep waiting
@@ -85,7 +99,8 @@ function getIt(){
       }, 1);
     }
   }
-  
 }
 
+
 google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addEventListener

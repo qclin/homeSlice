@@ -1,0 +1,24 @@
+<div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; cursor: url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur) 8 8, default;"><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div><canvas width="1164" height="330"></canvas><div class="gmnoprint" style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 1164px; height: 330px; font-family: Roboto, Arial, sans-serif;"><svg version="1.1" overflow="hidden" width="1164px" height="330px" viewBox="0 0 1164 330" style="position: absolute; left: 0px; top: 0px;"><ellipse fill="white" fill-rule="evenodd" visibility="hidden" fill-opacity="0.5" cx="395" cy="182" rx="19" ry="3"></ellipse><path fill="white" fill-rule="evenodd" visibility="hidden" fill-opacity="0.5" d="M595 365 L595 144 L320 150 L320 309 Z"></path></svg></div></div>
+
+$('.gm-style').children(0).children(0).css("cursor")
+"url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur), default"
+
+
+myPano.getLinks 
+
+Array[2]0: Object description: ""heading: 72pano: "BgBpLXz58TZVrqM3eQl57Q"__proto__: Object__defineGetter__: __defineGetter__() { [native code] }__defineSetter__: __defineSetter__() { [native code] }__lookupGetter__: __lookupGetter__() { [native code] }__lookupSetter__: __lookupSetter__() { [native code] }constructor: Object() { [native code] }hasOwnProperty: hasOwnProperty() { [native code] }isPrototypeOf: isPrototypeOf() { [native code] }propertyIsEnumerable: propertyIsEnumerable() { [native code] }toLocaleString: toLocaleString() { [native code] }toString: toString() { [native code] }valueOf: valueOf() { [native code] }get __proto__: __proto__() { [native code] }set __proto__: __proto__() { [native code] }1: Objectdescription: ""heading: 252pano: "be2gjXNR4jpmi_eYLEcUTQ"__proto__: Objectlength: 2__proto__: Array[0]
+
+myPano.getLocation 
+
+Object description: "Szczurzynek, Ciechanow, Masovian Voivodeship"latLng: qfA: 52.860059F: 20.612919000000034__proto__: qfpano: "eZGePUBxQRIdzXTNEig4Pg"shortDescription: "Szczurzynek"__proto__: Object
+
+myPano.getPano 
+
+eZGePUBxQRIdzXTNEig4Pg
+
+//Returns the current panorama ID for the Street View panorama. This id is stable within the browser's current session only.
+
+
+myPano.getPhotographerPov()
+
+Object heading: 252.78 pitch: -0.35873347276513345
