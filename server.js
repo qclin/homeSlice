@@ -30,13 +30,27 @@ app.get('/theVoid', function(req, res){
   res.render('stPano.ejs');
 });
 
+app.get('/allPlaces', function(req,res){
+  client.query('SELECT * FROM stView', function(err, data){
+    if (err){throw err; }
+    res.render('places.ejs', {places: data.rows});
+  });
+});
+
+app.get('/places/:id', function(req,res){
+  client.query('SELECT * FROM stView WHERE id =' + req.params.id, function(err, data){
+    if(err){throw err; }
+    res.render('onePlace.ejs', {place: data.rows[0]});
+  });
+});
+
 app.post('/stViewLocation', function(req,res){
   client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.shortDescription, req.body.latLng.A, req.body.latLng.F, req.body.description, req.body.pano], function(err, data){ if(err){ throw err; }
 
     var id = data.rows[0].id;
         client.query("SELECT * FROM stView WHERE id = " + id, function(err, data) {
           if(err){ throw err; }
-          console.log(data.rows)
+          console.log(data.rows);
           res.json(data.rows);
         });
     });

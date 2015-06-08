@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Monofett|Monoton' rel='stylesheet' type='text/css'>
+  <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script src = "js/streetView.js"></script>
+  <title></title>
+</head>
+<body>
+<p>
+<%= place.location %> 
+<div id = "lat"><%= place.latlng.x%></div> Lattitude
+<div id = "lng"><%= place.latlng.y%></div> Longitude
+<div id = "description"> <%= place.description %> </div>
+</p>
+<canvas id="place-canvas"></canvas>
+</body>
+</html>

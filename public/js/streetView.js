@@ -11,7 +11,7 @@ function getIt(){
   function setMapDetails() {
     var latLngRanges = [
       { // america
-        lat: { mn: 25, mx: 55 },
+        lat: { mn: 25, mx: 40 },
         lng: { mn: -125, mx: -70 }
       },
       { // europe

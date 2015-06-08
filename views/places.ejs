@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<% Object.keys(places).forEach(function(key){ %>
+    <a href = "/places/<%= places[key].id %>"><%= places[key].location %></a>
+    <%= places[key].latLng %>
+    <%= places[key].description %>
+<% }); %> 
+
+</body>
+</html>
