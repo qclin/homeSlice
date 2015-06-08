@@ -12,7 +12,6 @@ var pg = require('pg');
 var connectStr = "pg://"+secrets["username"]+ ":"+ secrets["password"]+"@localhost/homeslice"; 
 var client = new pg.Client(connectStr); 
 client.connect(function(){
-  console.log("connected");
 });
 
 app.use(cors());
@@ -20,11 +19,15 @@ app.use(bodyParser.json({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-  res.render('index.html')
+  res.render('index.html');
+});
+
+app.get('/americaLat40', function(req,res){
+  res.render('map.ejs');
 });
 
 app.get('/theVoid', function(req, res){
-  res.render('stView.ejs')
+  res.render('stPano.ejs');
 });
 
 app.post('/stViewLocation', function(req,res){

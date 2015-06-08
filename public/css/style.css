@@ -4,13 +4,54 @@ html, body,#map-canvas{
   padding: 0px;
   top: .1px;
 }
+body, button{
+font-family: 'Monoton', cursive;
+}
+.instruction{
+  text-align: center;
+}
+div{
+  font-size: 1.5em;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+  font-family: 'Monoton', cursive;
+  color: #3A5F0B;
+}
+a:hover{
+  color: blanchedalmond;
+}
+h1{
+  padding: 0;
+  font-size: 2em;
+  color:#ffe200;
+  font-weight:lighter;
+  margin:0;
+}
+h1:hover{
+  color:#67fcd2;
+}
+p{
+  margin:0;
+  padding: 0;
+}
+#play{
+  bottom:0px;
+  float: right;
+  width: 100%;
+  padding:0;
+  margin:0;
+  text-align: center;
+  font-size: 8em;
+}
 
 #canvas{
-  border: 5px solid red;
+  /*border: 5px solid red;*/
   position: absolute;
   background-color: transparent;
   top: .1px;
-  z-index:10; 
+  z-index:1; 
   margin: 0px;
   padding: 0px;
 }

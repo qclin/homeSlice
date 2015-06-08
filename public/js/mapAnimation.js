@@ -119,10 +119,10 @@ function tick(e){
   if((trap.x - 5 < jaffar.x && jaffar.x < trap.x + 5) && (trap.y - 5< jaffar.y && jaffar.y < trap.y +5)){
     window.location.assign("http://localhost:1234/theVoid");
   }
-  if(jaffar.x == 0){
+  if(jaffar.x <= 0){
     goEast();
     jaffar.x = w/2;
-  }else if(jaffar.x == w){
+  }else if(jaffar.x >= w){
     goWest();
     jaffar.x = w/2;
   }
@@ -166,11 +166,11 @@ function renderTrap(){
   stage.addChild(trap);
 }
 function makePuff(){
-  for(i = 0; i< 6; i++){
+  for(i = 0; i< 5; i++){
     puff = new createjs.Sprite(puffSheet, "wadlRt"); 
     puff.gotoAndPlay("wadlRt");
     puff.x = w-45;
-    puff.y = h-(45+(i*100));
+    puff.y = h-(i*100)-100;
     puffins.addChild(puff);
   }
 }

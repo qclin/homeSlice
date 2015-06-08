@@ -1,4 +1,3 @@
-
 var map, lng, latLng;
 function initialize() {
   lng = -100
@@ -18,12 +17,6 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-// $(function() {
-//   $('body').keydown(function(e){
-//     goWest();
-//   });
-// });
-
 function goEast(){
   for(i=0; i<1; i+= 0.1){
     lng += i;
@@ -37,5 +30,3 @@ function goWest(){
   }
   map.panBy(canvas.width/2, 0);
 }
-
-// module.exports = {goEast: goEast, goWest: goWest};
