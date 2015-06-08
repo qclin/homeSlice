@@ -235,7 +235,7 @@ function checkHit(){
     tweens =[];
     counter += 1; 
   }
-  if((counter != 0) && (counter % 3 == 0)){
+  if(puffins.getNumChildren() == 1){
     makePuff();
   }
 }

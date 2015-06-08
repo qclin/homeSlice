@@ -74,6 +74,8 @@ p{
   z-index:1; 
   margin: 0px;
   padding: 0px;
+  cursor:none;
+  pointer-events: none;
 }
 
 #distractor{
