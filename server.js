@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 // var pg = require('pg');
 var cors = require('cors');
-
+var fs = require('fs');
 var app = express();
 var ejs = require("ejs");
 app.set("view engine", "ejs");
@@ -40,19 +40,30 @@ app.get('/allPlaces', function(req,res){
 app.get('/places/:id', function(req,res){
   client.query('SELECT * FROM stView WHERE id =' + req.params.id, function(err, data){
     if(err){throw err; }
+
     res.render('onePlace.ejs', {place: data.rows[0]});
   });
 });
 
 app.post('/stViewLocation', function(req,res){
-  client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.shortDescription, req.body.latLng.A, req.body.latLng.F, req.body.description, req.body.pano], function(err, data){ if(err){ throw err; }
+  
+  client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.pano.shortDescription, req.body.pano.latLng.A, req.body.pano.latLng.F, req.body.pano.description, req.body.pano.pano], function(err, result){ if(err){ throw err; }
 
-    var id = data.rows[0].id;
-        client.query("SELECT * FROM stView WHERE id = " + id, function(err, data) {
-          if(err){ throw err; }
-          console.log(data.rows);
-          res.json(data.rows);
-        });
+      var id = result.rows[0].id;
+      console.log(req.body.img);
+      var base64DATA = req.body.img.replace(/^data:image\/png;base64,/, "");
+      var buff = new Buffer(base64DATA, 'base64');
+      console.log(base64DATA);
+      console.log(buff.length);
+          fs.writeFile("public/screenshot/street"+id+".png", buff, function(err){
+            console.log(err);
+          });
+
+      client.query("SELECT * FROM stView WHERE id = " + id, function(err, result) {
+        if(err){ throw err; }
+        console.log(result.rows);
+        res.json(result.rows);
+      });
     });
 });
 

@@ -1,8 +1,22 @@
-var myPano;
+var myPano, canvas, img;
 
 function initialize() {
   //let's go anywhere else in the world 
   getIt(); 
+}
+
+function loading(){
+  // loading a distractor. . . not working 
+//   $('#distractor').eq(0).show();
+//   $.ajax({
+//     method: 'GET',
+//     dataType: 'json',
+//     contentType:"application/json; charset=utf-8",
+//     url: "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=loading ",
+//   }).done(function(response){
+//     debugger;
+//     $('#gif').html("src=" + response.data.image_url +"");
+//   });
 }
 
 function getIt(){
@@ -39,8 +53,8 @@ function getIt(){
       draggableCursor : "url(http://s3.amazonaws.com/besport.com_images/status-pin.png), auto;",
       position: elseWhere,
       pov: {
-        heading: 165,
-        pitch: 0
+        heading: 180,
+        pitch: 90
       },
       zoom: 1,
       addressControlOptions: {
@@ -72,25 +86,38 @@ function getIt(){
         panoramaOptions);
         checkResults();
       } else {
-        init(); // initing animation 
+        //init(); // initing animation 
         //street view hit something
         /// changing mouse cursor options doesn't work
-        myPano.setOptions({  });
-        $('#map-canvas').eq(0).css({"cursor":"url('images/radish.png')"});
+        // myPano.setOptions({  });
+        // $('#map-canvas').eq(0).css({"cursor":"url('images/radish.png')"});
         myPano.setVisible(true);
-
-        var data = myPano.getLocation();
-        console.log(data);
-        var landed = JSON.stringify(data);
-        $.ajax({
-          method: 'POST',
-          url: '/stViewLocation',
-          dataType: 'json',
-          data:landed,
-          contentType:"application/json; charset=utf-8"
-        }).done (function(data){
-          console.log(data);
-        });
+        $('#distractor').eq(0).hide();
+        var canvases = document.getElementsByTagName('canvas');
+        // taking a screenshot of the loaded canvas
+        for(var i=0; i< canvases.length; i ++){
+          if (canvases[i].style.display != "none"){
+             canvas = canvases[i];
+             img = canvas.toDataURL("image/png");
+             document.write('<img src="' + img + '"/>');
+            var landed = myPano.getLocation();
+            var both = {
+              pano:landed,
+              img: img
+            }
+            var pack = JSON.stringify(both);
+            $.ajax({
+              method: 'POST',
+              url: '/stViewLocation',
+              dataType: 'json',
+              data: pack,
+              contentType:"application/json; charset=utf-8"
+            }).done (function(data){
+              console.log("we posted: "+ data);
+            });
+          }
+        }
+        
       }
     } else {
       // keep waiting
