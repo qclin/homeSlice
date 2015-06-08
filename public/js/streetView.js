@@ -54,7 +54,7 @@ function getIt(){
       position: elseWhere,
       pov: {
         heading: 180,
-        pitch: 90
+        pitch: -45
       },
       zoom: 1,
       addressControlOptions: {
@@ -88,35 +88,20 @@ function getIt(){
       } else {
         //init(); // initing animation 
         //street view hit something
-        /// changing mouse cursor options doesn't work
-        // myPano.setOptions({  });
-        // $('#map-canvas').eq(0).css({"cursor":"url('images/radish.png')"});
+
         myPano.setVisible(true);
         $('#distractor').eq(0).hide();
-        var canvases = document.getElementsByTagName('canvas');
-        // taking a screenshot of the loaded canvas
-        for(var i=0; i< canvases.length; i ++){
-          if (canvases[i].style.display != "none"){
-             canvas = canvases[i];
-             img = canvas.toDataURL("image/png");
-             document.write('<img src="' + img + '"/>');
-            var landed = myPano.getLocation();
-            var both = {
-              pano:landed,
-              img: img
-            }
-            var pack = JSON.stringify(both);
-            $.ajax({
-              method: 'POST',
-              url: '/stViewLocation',
-              dataType: 'json',
-              data: pack,
-              contentType:"application/json; charset=utf-8"
-            }).done (function(data){
-              console.log("we posted: "+ data);
-            });
-          }
-        }
+        setTimeout(init, 2000);
+        var landed = JSON.stringify(myPano.getLocation());
+        $.ajax({
+          method: 'POST',
+          url: '/stViewLocation',
+          dataType: 'json',
+          data: landed,
+          contentType:"application/json; charset=utf-8"
+        }).done (function(data){
+          console.log("we posted: "+ data);
+        });
         
       }
     } else {

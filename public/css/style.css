@@ -35,6 +35,7 @@ h1:hover{
 p{
   margin:0;
   padding: 0;
+  text-align: center;
 }
 #play{
   bottom:0px;
@@ -44,6 +45,25 @@ p{
   margin:0;
   text-align: center;
   font-size: 8em;
+}
+#skyview img{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+#description{
+  position: absolute;
+  font-size: 2em;
+  padding: auto;
+  width: 100%;
+  z-index: 10;
+  top:5em;
+  margin: auto;
+  color: white;
+  font-weight:lighter;
+}
+#description:hover{
+  color:#FFA07A;
 }
 
 #canvas{
@@ -65,4 +85,17 @@ p{
   margin: auto;
 }
 
+nav{
+  top:5em;
+  width: 100%;
+  z-index: 5;
+  font-size: 5em;
+  position: absolute;
+}
+#left{
+  float: left;
+}
+#right{
+  float: right;
+}
 

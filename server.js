@@ -47,17 +47,16 @@ app.get('/places/:id', function(req,res){
 
 app.post('/stViewLocation', function(req,res){
   
-  client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.pano.shortDescription, req.body.pano.latLng.A, req.body.pano.latLng.F, req.body.pano.description, req.body.pano.pano], function(err, result){ if(err){ throw err; }
+  client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.shortDescription, req.body.latLng.A, req.body.latLng.F, req.body.description, req.body.pano], function(err, result){ if(err){ throw err; }
 
       var id = result.rows[0].id;
-      console.log(req.body.img);
-      var base64DATA = req.body.img.replace(/^data:image\/png;base64,/, "");
-      var buff = new Buffer(base64DATA, 'base64');
-      console.log(base64DATA);
-      console.log(buff.length);
-          fs.writeFile("public/screenshot/street"+id+".png", buff, function(err){
-            console.log(err);
-          });
+
+      // var base64DATA = req.body.img.replace(/^data:image\/png;base64,/, "");
+      // var buff = new Buffer(base64DATA, 'base64');
+
+      // fs.writeFile("public/screenshot/street"+id+".png", buff, function(err){
+      //   console.log(err);
+      // });
 
       client.query("SELECT * FROM stView WHERE id = " + id, function(err, result) {
         if(err){ throw err; }

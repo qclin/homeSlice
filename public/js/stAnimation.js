@@ -12,7 +12,7 @@ function init(){
       canvas = bunchOfEM[i];
     }
   }
-  $('.gm-style').children(0).children(0).css("cursor", "url('../css/images/radish.png'), default");
+  $('.gm-style').children(0).children(0).css("cursor", "url('http://localhost:1234/css/images/radish.png'), default");
   //canvas = document.getElementsByTagName('canvas')[0];
   console.log(canvas);
   canvas.width = $(window).width();
@@ -27,7 +27,7 @@ function init(){
   radish.y = canvas.height/2;
   stage.addChild(radish);
   replaceCursor();
-  createjs.Ticker.addEventListener("tick", replaceCursor);
+  //createjs.Ticker.addEventListener("tick", replaceCursor);
 }
 
 function replaceCursor(){

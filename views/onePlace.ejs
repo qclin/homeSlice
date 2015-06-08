@@ -10,13 +10,22 @@
   <title></title>
 </head>
 <body>
+<nav><a id = "left" href ="http://localhost:1234/places/<%= place.id-1 %>">&#9664;</span> <a id = "right" href ="http://localhost:1234/places/<%= place.id+1%>"> &#9654; </span></nav> 
 <p>
-<%= place.location %> 
-<div id = "lat"><%= place.latlng.x%></div> Lattitude
-<div id = "lng"><%= place.latlng.y%></div> Longitude
-<div id = "description"> <%= place.description %> </div>
+  <img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
+  <p id = "description"><%= place.location %><br>
+  <%= place.latlng.x%> Lattitude <br>
+  <%= place.latlng.y%> Longitude <br>
+  <%= place.description %> <br>
+  </p>
 </p>
-<img src = "<%= place.image %>"></img>
-<canvas id="place-canvas"></canvas>
+<p>
+<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=45"></img>
+<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=0"></img>
+<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-90"></img>
+<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-135"></img>
+<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-180"></img>
+</p>
+
 </body>
 </html>
