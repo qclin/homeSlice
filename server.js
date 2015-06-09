@@ -46,11 +46,11 @@ app.get('/places/:id', function(req,res){
 });
 
 app.post('/stViewLocation', function(req,res){
-  
-  client.query('INSERT INTO stView(location, latLng, description, pano_id) VALUES ($1, POINT($2, $3), $4, $5) RETURNING id', [req.body.shortDescription, req.body.latLng.A, req.body.latLng.F, req.body.description, req.body.pano], function(err, result){ if(err){ throw err; }
+
+  client.query('INSERT INTO stView(location, latLng, description, pano_id, guess) VALUES ($1, POINT($2, $3), $4, $5, $6) RETURNING id', [req.body.info.shortDescription, req.body.info.latLng.A, req.body.info.latLng.F, req.body.info.description, req.body.info.pano, req.body.results.answer], function(err, result){ if(err){ throw err; }
 
       var id = result.rows[0].id;
-
+      /// attempt for screenshotting, but gm cors 
       // var base64DATA = req.body.img.replace(/^data:image\/png;base64,/, "");
       // var buff = new Buffer(base64DATA, 'base64');
 

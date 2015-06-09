@@ -1,4 +1,5 @@
-var myPano, canvas, img;
+var myPano, canvas, img, user_answer, info;
+
 
 function initialize() {
   //let's go anywhere else in the world 
@@ -88,22 +89,11 @@ function getIt(){
         panoramaOptions);
         checkResults();
       } else {
-        //init(); // initing animation 
         //street view hit something
         $('#comments').show();
         myPano.setVisible(true);
         $('#distractor').eq(0).hide();
-        var landed = JSON.stringify(myPano.getLocation());
-        $.ajax({
-          method: 'POST',
-          url: '/stViewLocation',
-          dataType: 'json',
-          data: landed,
-          contentType:"application/json; charset=utf-8"
-        }).done (function(data){
-          console.log("we posted: "+ data);
-        });
-        
+        info = myPano.getLocation();
       }
     } else {
       // keep waiting
@@ -116,13 +106,24 @@ function getIt(){
 
 function guess(ele){
    if(event.keyCode == 13) {
-        console.log(ele.value);
+        user_answer = ele.value;
         ele.value = myPano.location.description;
         init();   
+
         setTimeout(function(){
           $('#comments').eq(0).hide();
         },1000);
-             
+        var answer = JSON.stringify({results:{answer: user_answer},info});
+        debugger;
+        $.ajax({
+          method: 'POST',
+          url: '/stViewLocation',
+          dataType: 'json',
+          data: answer,
+          contentType:"application/json; charset=utf-8"
+        }).done (function(data){
+          console.log("we posted: "+ data);
+        });     
     }
 }
 

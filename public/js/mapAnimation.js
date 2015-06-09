@@ -1,6 +1,6 @@
 var canvas, stage, w, h, loader;
 var jaffar, puff, puff2, puff3, puff4, puff5;
-var lfHeld, rtHeld, upHeld, dnHeld, sendFire; 
+var lfHeld, rtHeld, upHeld, dnHeld, sendFire, exit; 
 var puffins, puffSheet, onePuff, characters; 
 var radars, trap;
 var tweens, activeCount;
@@ -102,6 +102,9 @@ function tick(e){
   if(rtHeld){jaffar.x += 5; }
   if(dnHeld){jaffar.y += 5; }
   if(upHeld){jaffar.y -= 5; }
+  if(exit){
+    window.location.assign(location.origin + "/allPlaces");
+  }
   if(lfHeld && keyDn == false){ 
     jaffar.gotoAndPlay("wkLeft"); keyDn = true;}
   if(rtHeld && keyDn == false){ 
@@ -143,6 +146,7 @@ $(function() {
       case 39: rtHeld = true; break; 
       case 38: upHeld = true; break; 
       case 40: dnHeld = true; break; 
+      case 27: exit = true; break;
     }
   });
 
@@ -154,6 +158,7 @@ $(function() {
       case 39: jaffar.gotoAndStop('wkRight');keyDn = false; rtHeld = false; break; 
       case 38: jaffar.gotoAndStop('wkUp');keyDn = false; upHeld = false; break; 
       case 40: jaffar.gotoAndStop('wkDown');keyDn = false; dnHeld = false; break; 
+      case 27: keyDn = false; exit = false; break; 
     }
   }); 
   
@@ -195,7 +200,9 @@ function roamPuff(e){
     var position = onePuff.x + 150 * deltaS; 
     var puffW = onePuff.getBounds().width * onePuff.scaleX; 
     onePuff.x = (position >= stage.canvas.width+ puffW) ? + puffW : position; 
-
+    if((onePuff.x - 5 < jaffar.x && jaffar.x < onePuff.x + 5) && (onePuff.y - 5< jaffar.y && jaffar.y < onePuff.y +5)){
+        alert("get out the way ~!");
+    }
   }
 }
 
@@ -225,9 +232,6 @@ function simmerDown(){
   for(i = 0; i< amt; i++){
     onePuff = puffins.getChildAt(i);
     checkHit();
-    if((onePuff.x + 2 >= jaffar.x && onePuff.x -2 <= jaffar.x)&&(onePuff.y+2 >= jaffar.y && onePuff.y-2 <= jaffar.y-2)){
-      alert("get out the way ~!");
-    }
   }
 }
 
