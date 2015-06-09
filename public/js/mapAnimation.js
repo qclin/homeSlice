@@ -195,6 +195,7 @@ function roamPuff(e){
     var position = onePuff.x + 150 * deltaS; 
     var puffW = onePuff.getBounds().width * onePuff.scaleX; 
     onePuff.x = (position >= stage.canvas.width+ puffW) ? + puffW : position; 
+
   }
 }
 
@@ -224,6 +225,9 @@ function simmerDown(){
   for(i = 0; i< amt; i++){
     onePuff = puffins.getChildAt(i);
     checkHit();
+    if((onePuff.x + 2 >= jaffar.x && onePuff.x -2 <= jaffar.x)&&(onePuff.y+2 >= jaffar.y && onePuff.y-2 <= jaffar.y-2)){
+      alert("get out the way ~!");
+    }
   }
 }
 

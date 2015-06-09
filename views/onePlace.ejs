@@ -7,10 +7,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
   <script src = "js/streetView.js"></script>
-  <title></title>
+  <title>&#8965;&#8966;&#8967;&#8997;</title>
 </head>
 <body>
-<nav><a id = "left" href =location.origin + "/places/<%= place.id-1 %>">&#9664;</span> <a id = "right" href =location.origin + "/places/<%= place.id+1%>"> &#9654; </span></nav> 
+<a id = "home" href = "/">&#8962;</a>
+<nav><a id = "left" href = "/places/<%= place.id-1 %>">&#9665; </a> <a id = "right" href ="/places/<%= place.id+1%>"> &#9655; </a></nav> 
 <p>
   <img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
   <p id = "description"><%= place.location %><br>

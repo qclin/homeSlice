@@ -44,9 +44,9 @@ function happening(){
 }
 
 function genFollower(){
-
   radish = new createjs.Bitmap('../css/images/radish.png'); 
   stage.addChild(radish);
+  radish.alpha = .5;
   createjs.Ticker.addEventListener("tick", follow);
 }
 
