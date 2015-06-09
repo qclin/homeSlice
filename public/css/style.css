@@ -3,6 +3,7 @@ html, body,#map-canvas{
   margin: 0px;
   padding: 0px;
   top: .1px;
+  cursor:none;
 }
 body, button{
 font-family: 'Monoton', Sans-Serif;
@@ -75,7 +76,6 @@ p{
   margin: 0px;
   padding: 0px;
   cursor:none;
-  pointer-events: none;
 }
 
 #distractor{
@@ -101,3 +101,33 @@ nav{
   float: right;
 }
 
+#st-animation-canvas{
+  position: absolute;
+  background-color: transparent;
+  top: .1px;
+  z-index:1; 
+  margin: 0px;
+  padding: 0px;
+  cursor:none;
+  pointer-events: none;
+}
+
+#comments{
+  display: none;
+  z-index: 10;
+  position: absolute;
+  opacity: 1;
+  outline: none;
+  background:transparent;
+  border: 0;
+  border-bottom: .1em solid #fff; 
+  font-weight: bold;
+  line-height: 1em;
+  text-align: center;
+  color:white;
+  font-size: 3em;
+  margin: 0 auto;
+  float:center; 
+  width:100%;
+  top: 50%;
+}

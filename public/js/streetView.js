@@ -47,21 +47,23 @@ function getIt(){
     lat = Math.random() * (range.lat.mx - range.lat.mn) + range.lat.mn;
     lng = Math.random() * (range.lng.mx - range.lng.mn) + range.lng.mn;
     // static latlng for testing canvas animation 
-    elseWhere = new google.maps.LatLng(lat,lng);
+    elseWhere = new google.maps.LatLng(lat, lng);
 
     panoramaOptions = {
-      draggableCursor : "url(http://s3.amazonaws.com/besport.com_images/status-pin.png), auto;",
+      draggableCursor : "url(http://localhost:1234/css/image/radish.png), auto;",
       position: elseWhere,
       pov: {
-        heading: 180,
-        pitch: -45
+        heading: 90,
+        pitch: 45
       },
       zoom: 1,
-      addressControlOptions: {
-          position: google.maps.ControlPosition.BOTTOM_CENTER
-      },
+      addressControl:false,
+      // addressControlOptions: {
+      //     position: google.maps.ControlPosition.BOTTOM_CENTER
+      // },
       linksControl: false,
       panControl: false,
+      zoomControl:false,
       zoomControlOptions: {
           style: google.maps.ZoomControlStyle.SMALL
       },
@@ -88,10 +90,9 @@ function getIt(){
       } else {
         //init(); // initing animation 
         //street view hit something
-
+        $('#comments').show();
         myPano.setVisible(true);
         $('#distractor').eq(0).hide();
-        setTimeout(init, 2000);
         var landed = JSON.stringify(myPano.getLocation());
         $.ajax({
           method: 'POST',
@@ -113,6 +114,17 @@ function getIt(){
   }
 }
 
+function guess(ele){
+   if(event.keyCode == 13) {
+        console.log(ele.value);
+        ele.value = myPano.location.description;
+        init();   
+        setTimeout(function(){
+          $('#comments').eq(0).hide();
+        },1000);
+             
+    }
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addEventListener

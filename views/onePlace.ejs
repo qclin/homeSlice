@@ -10,7 +10,7 @@
   <title></title>
 </head>
 <body>
-<nav><a id = "left" href ="http://localhost:1234/places/<%= place.id-1 %>">&#9664;</span> <a id = "right" href ="http://localhost:1234/places/<%= place.id+1%>"> &#9654; </span></nav> 
+<nav><a id = "left" href =location.origin + "/places/<%= place.id-1 %>">&#9664;</span> <a id = "right" href =location.origin + "/places/<%= place.id+1%>"> &#9654; </span></nav> 
 <p>
   <img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
   <p id = "description"><%= place.location %><br>

@@ -117,7 +117,7 @@ function tick(e){
     simmerDown();
   }
   if((trap.x - 5 < jaffar.x && jaffar.x < trap.x + 5) && (trap.y - 5< jaffar.y && jaffar.y < trap.y +5)){
-    window.location.assign("http://localhost:1234/theVoid");
+    window.location.assign(location.origin + "/theVoid");
   }
   if(jaffar.x <= 0){
     goEast();
@@ -127,9 +127,8 @@ function tick(e){
     jaffar.x = w/2;
   }
 
-
   trap.on("click", function(e){
-    window.location.assign("http://localhost:1234/theVoid");
+    window.location.assign(location.origin + "/theVoid");
   });
 
   stage.update(e);
