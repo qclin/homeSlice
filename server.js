@@ -13,6 +13,7 @@ var pg = require('pg');
 var connectStr = "pg://root@localhost/root"; 
 var client = new pg.Client(connectStr); 
 client.connect(function(){
+  console.log("connected to psql");
 });
 
 app.use(cors());
