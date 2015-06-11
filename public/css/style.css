@@ -26,10 +26,11 @@ a:hover{
   color: blanchedalmond;
 }
 #home{
-  top:5em;
+  top:.5em;
   position: fixed;
   z-index: 8;
   float: right;
+  font-size: 5em;
 }
 h1{
   padding: 0;
