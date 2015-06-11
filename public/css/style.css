@@ -31,6 +31,7 @@ a:hover{
   z-index: 8;
   float: right;
   font-size: 5em;
+  color:white;
 }
 h1{
   padding: 0;
@@ -107,14 +108,13 @@ nav{
   z-index: 5;
   font-size: 5em;
   position:fixed;
+  color: white;
 }
 #left{
   float: left;
-  color: white;
 }
 #right{
   float: right;
-  color: white;
 }
 
 #st-animation-canvas{
@@ -148,6 +148,7 @@ nav{
   top: 50%;
 }
 #guess{
+  font-family: sans-serif;
   top:5em;
   position: fixed;
   z-index: 5;
