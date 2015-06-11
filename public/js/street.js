@@ -51,7 +51,7 @@ function getIt(){
     elseWhere = new google.maps.LatLng(lat, lng);
 
     panoramaOptions = {
-      draggableCursor : "url(http://localhost:1234/css/image/radish.png), auto;",
+      draggableCursor : "url("+location.origin+"/css/image/radish.png), auto;",
       position: elseWhere,
       pov: {
         heading: 90,
@@ -114,10 +114,9 @@ function guess(ele){
           $('#comments').eq(0).hide();
         },1000);
         var answer = JSON.stringify({results:{answer: user_answer},info});
-        debugger;
         $.ajax({
           method: 'POST',
-          url: '/stViewLocation',
+          url: location.origin+'/stViewLocation',
           dataType: 'json',
           data: answer,
           contentType:"application/json; charset=utf-8"

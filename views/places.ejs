@@ -5,6 +5,7 @@
       <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
 </head>
 <body>
+<h1>all the potholes that we've fell through </h1>
 <% Object.keys(places).forEach(function(key){ %>
     <a href = "/places/<%= places[key].id %>"><%= places[key].description %></a>
     <%= places[key].latLng %>
