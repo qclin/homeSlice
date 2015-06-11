@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 var secrets = require("./secrets.json");
 var pg = require('pg'); 
 //var connectStr = "pg://"+secrets["username"]+ ":"+ secrets["password"]+"@localhost/homeslice"; 
-var connectStr = "pg://root@localhost/root"; 
+var connectStr = "pg://root:lemon@localhost/root"; 
 var client = new pg.Client(connectStr); 
 // client.connect(function(){
 //   console.log("connected to psql");
