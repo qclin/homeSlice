@@ -10,25 +10,26 @@
   <title>&#8965;&#8966;&#8967;&#8997;</title>
 </head>
 <body>
-<a id = "home" href = "/">&#8962;</a>
-<nav><a id = "left" href = "/places/<%= place.id-1 %>">&#9665; </a> <a id = "right" href ="/places/<%= place.id+1%>"> &#9655; </a></nav> 
-<p>
 
-  <h1 id = "guess">they say: <%= place.guess %></h1>
-  <img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
-  <p id = "description">
-  <%= place.location %><br>
-  <%= place.latlng.x%> Lattitude <br>
-  <%= place.latlng.y%> Longitude <br>
-  <%= place.description %> <br>
-  </p>
-</p>
-<p>
-<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=45"></img>
-<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=0"></img>
-<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-90"></img>
-<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-135"></img>
-<img id="skyview" src = "https://maps.googleapis.com/maps/api/streetview?size=640x640&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-180"></img>
+<nav><a id = "left" href = "/places/<%= place.id-1 %>">&#9665; </a> <a id = "right" href ="/places/<%= place.id+1%>"> &#9655; </a></nav> <a id = "home" href = "/">&#8962;</a>
+
+
+<h1 id = "guess">survey says: <%= place.guess %></h1>
+
+<div id = "skyview">
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=45"></img>
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=0"></img>
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-90"></img>
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-135"></img>
+<img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-180"></img>
+</div>
+
+<p id = "description">
+<%= place.location %><br>
+<%= place.latlng.x%> Lattitude <br>
+<%= place.latlng.y%> Longitude <br>
+<%= place.description %> <br>
 </p>
 
 </body>

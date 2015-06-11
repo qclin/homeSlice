@@ -3,6 +3,8 @@ html, body,#map-canvas{
   margin: 0px;
   padding: 0px;
   top: .1px;
+}
+#map-canvas{
   cursor:none;
 }
 body, button{
@@ -24,12 +26,10 @@ a:hover{
   color: blanchedalmond;
 }
 #home{
-  font-size: 5em; 
-  float: right; 
-  display: inline;
-  width: auto;
-  padding: 5px;
-  margin: 0;
+  top:5em;
+  position: fixed;
+  z-index: 8;
+  float: right;
 }
 h1{
   padding: 0;
@@ -37,6 +37,7 @@ h1{
   color:#ffe200;
   font-weight:lighter;
   margin:0;
+  text-align: center;
 }
 h1:hover{
   color:#67fcd2;
@@ -56,24 +57,27 @@ p{
   font-size: 8em;
 }
 #skyview img{
-  position: absolute;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  position: relative;
+  margin: auto 0;
+  padding: auto 0;
+  display: inline-block;
 }
 
 #description{
-  position: absolute;
+  position: relative;
   font-size: 2em;
   padding: auto;
   width: 100%;
   z-index: 10;
-  top:5em;
+  bottom: 10em;
   margin: auto;
   color: white;
   font-weight:lighter;
 }
+
 #description:hover{
-  color:#FFA07A;
+  color:black;
 }
 
 #canvas{
@@ -97,17 +101,19 @@ p{
 }
 
 nav{
-  top:5em;
+  top:3em;
   width: 100%;
   z-index: 5;
   font-size: 5em;
-  position: absolute;
+  position:fixed;
 }
 #left{
   float: left;
+  color: white;
 }
 #right{
   float: right;
+  color: white;
 }
 
 #st-animation-canvas{
@@ -139,4 +145,12 @@ nav{
   float:center; 
   width:100%;
   top: 50%;
+}
+#guess{
+  top:5em;
+  position: fixed;
+  z-index: 5;
+  color: #f4a460;
+  padding: auto;
+  margin: auto;
 }
