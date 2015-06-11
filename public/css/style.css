@@ -108,13 +108,14 @@ nav{
   z-index: 5;
   font-size: 5em;
   position:fixed;
-  color: white;
 }
 #left{
   float: left;
+  color: white;
 }
 #right{
   float: right;
+  color: white;
 }
 
 #st-animation-canvas{
