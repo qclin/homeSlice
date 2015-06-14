@@ -10,9 +10,8 @@ app.set("view engine", "ejs");
 var secrets = require("./secrets.json");
 var pg = require('pg'); 
 /// local connection string
-//var connectStr = "pg://"+secrets["username"]+ ":"+ secrets["password"]+"@localhost/homeslice"; 
+var connectStr = "pg://"+secrets["username"]+ ":"+ secrets["password"]+"@localhost/homeslice"; 
 /// digital ocean connection string
-var connectStr = "pg://root:lemon@localhost/root"; 
 var client = new pg.Client(connectStr); 
 
 client.connect(function(err) {
