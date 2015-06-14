@@ -1,8 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// var pg = require('pg');
 var cors = require('cors');
-var fs = require('fs');
+// var fs = require('fs');
 var app = express();
 var ejs = require("ejs");
 app.set("view engine", "ejs");
