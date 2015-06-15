@@ -60,20 +60,22 @@ p{
   font-size: 8em;
 }
 #skyview img{
-  width: 100%;
+  width: auto;
   position: relative;
-  margin: auto 0;
+  margin-left: 25%;
+  margin-right: 25%;
   padding: auto 0;
   display: inline-block;
 }
 
 #description{
-  position: relative;
+  position: fixed;
   font-size: 2em;
   padding: auto;
   width: 100%;
   z-index: 10;
-  bottom: 10em;
+  /*bottom: 10em;*/
+  top: 7em;
   margin: auto;
   color: white;
   font-weight:lighter;

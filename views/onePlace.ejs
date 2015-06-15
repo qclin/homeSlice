@@ -9,12 +9,31 @@
   <script src = "js/streetView.js"></script>
   <title>&#8965;&#8966;&#8967;&#8997;</title>
 </head>
+<script>
+  var prev, next;
+  $(function(){
+    $('body').keydown(function(e){
+    if(!e){ var e = window.Event; }
+    switch(e.keyCode){
+      case 37: window.location.assign("/places/<%= place.id-1 %>"); break; 
+      case 39: window.location.assign("/places/<%= place.id+1 %>"); break; 
+    }
+    });
+  });
+</script>
 <body>
 
 <nav><a id = "left" href = "/places/<%= place.id-1 %>">&#9665; </a> <a id = "right" href ="/places/<%= place.id+1%>"> &#9655; </a></nav> <a id = "home" href = "/">&#8962;</a>
 
 
-<h1 id = "guess">survey says: <%= place.guess %></h1>
+<!-- <h1 id = "guess">survey says: <%= place.guess %></h1> -->
+
+<p id = "description">
+<%= place.location %><br>
+<%= place.latlng.x%> Lattitude <br>
+<%= place.latlng.y%> Longitude <br>
+<%= place.description %> <br>
+</p>
 
 <div id = "skyview">
 <img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=90"></img>
@@ -25,12 +44,6 @@
 <img src = "https://maps.googleapis.com/maps/api/streetview?size=640x320&location=<%= place.latlng.x%>,<%= place.latlng.y%>&fov=90&heading=180&pitch=-180"></img>
 </div>
 
-<p id = "description">
-<%= place.location %><br>
-<%= place.latlng.x%> Lattitude <br>
-<%= place.latlng.y%> Longitude <br>
-<%= place.description %> <br>
-</p>
 
 </body>
 </html>
