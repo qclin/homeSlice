@@ -6,10 +6,11 @@
 </head>
 <body>
 <h1>all the potholes that we've fell through </h1>
+<div id ="place_list">
 <% Object.keys(places).forEach(function(key){ %>
     <a href = "/places/<%= places[key].id %>"><%= places[key].description %></a>
     <%= places[key].latLng %>
 <% }); %> 
-
+</div>
 </body>
 </html>

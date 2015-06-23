@@ -7,11 +7,11 @@ html, body,#map-canvas{
 #map-canvas{
   cursor:none;
 }
-body, button{
-font-family: 'Monoton', Sans-Serif;
-}
+
 .instruction{
-  text-align: center;
+  text-align: left;
+  font-family: 'Arvo', serif;
+  margin-left: 25%;
 }
 div{
   font-size: 1.5em;
@@ -30,7 +30,7 @@ a:hover{
   position: fixed;
   z-index: 8;
   float: right;
-  font-size: 5em;
+  font-size: 7em;
   color:white;
   width: 100%;
 }
@@ -56,14 +56,13 @@ p{
   width: 100%;
   padding:0;
   margin:0;
+  height: 10em;
   text-align: center;
-  font-size: 8em;
+  font-size: 10em;
 }
 #skyview img{
-  width: auto;
+  width: 100%;
   position: relative;
-  margin-left: 25%;
-  margin-right: 25%;
   padding: auto 0;
   display: inline-block;
 }
@@ -73,12 +72,12 @@ p{
   font-size: 2em;
   padding: auto;
   width: 100%;
-  z-index: 10;
-  /*bottom: 10em;*/
-  top: 7em;
+  z-index: 1;
+  top: 5em;
   margin: auto;
   color: white;
   font-weight:lighter;
+  font-family: 'Monoton', Sans-Serif;
 }
 
 #description:hover{
@@ -96,14 +95,6 @@ p{
   cursor:none;
 }
 
-#distractor{
-  z-index: 10;
-  bottom:0px;
-  position: absolute;
-  font-family: 'Monofett', Sans-Serif;
-  font-size: 5em;
-  margin: auto;
-}
 
 nav{
   top:3em;
@@ -152,11 +143,22 @@ nav{
   top: 50%;
 }
 #guess{
-  font-family: sans-serif;
+  font-family: 'Arvo', serif;
   top:5em;
   position: fixed;
   z-index: 5;
   color: #f4a460;
   padding: auto;
   margin: auto;
+}
+#title{
+  font-size: 5em;
+  border-bottom: dashed .05em black;
+}
+#keys{
+  font-size:3em;
+}
+#place_list{
+  font-family: 'Arvo', serif;
+  font-size: 1em;
 }

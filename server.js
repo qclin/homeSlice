@@ -13,6 +13,7 @@ var connectStr = "pg://"+secrets["username"]+ ":"+ secrets["password"]+"@localho
 var client = new pg.Client(connectStr); 
 
 client.connect(function(err) {
+  console.log(connectStr);
   if(err) { return console.error('could not connect to postgres', err); }
   client.query('SELECT NOW() AS "theTime"', function(err, result) {
     if(err) { return console.error('error running query', err); }
