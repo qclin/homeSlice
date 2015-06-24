@@ -1,4 +1,4 @@
-html, body,#map-canvas{ 
+html, body, #map-canvas{ 
   height: 100%;
   margin: 0px;
   padding: 0px;
@@ -21,6 +21,7 @@ a{
   text-decoration: none;
   font-family: 'Monoton', Sans-Serif;
   color: #3A5F0B;
+  display: inline-block;
 }
 a:hover{
   color: blanchedalmond;
@@ -82,7 +83,6 @@ p{
 #description:hover{
   color:black;
 }
-
 #canvas{
   /*border: 5px solid red;*/
   position: absolute;
@@ -93,8 +93,6 @@ p{
   padding: 0px;
   cursor:none;
 }
-
-
 nav{
   top:3em;
   width: 100%;
