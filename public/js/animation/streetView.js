@@ -1,10 +1,10 @@
 // grabbing the google canvas and drawing right on it
 // to maintain ability to pan around in the environment
-var stage, canvas, cursor, loader, bunchOfEM, holder; 
+var stage, canvas, cursor, loader, bunchOfEM, holder;
 var radish, jaffar, trap, follower, counter;
 
-function init(){
-  createjs.MotionGuidePlugin.install(createjs.Tween); 
+function initializeAnimation(){
+  createjs.MotionGuidePlugin.install(createjs.Tween);
   canvas = $('#st-animation-canvas')[0];
   canvas.width = $(window).width();
   canvas.height = $(window).height();
@@ -14,15 +14,15 @@ function init(){
   }
 
   w = canvas.width;
-  h = canvas.height; 
+  h = canvas.height;
   counter = 0;
   stage = new createjs.Stage(canvas);
   holder = stage.addChild(new createjs.Container());
 
   manifest = [
     {id:"prince", src:"princeOfPersia.png"},
-    {id: "puff", src:"puff.png"}, 
-    {id: "jaffar", src: "jaffar.png"}, 
+    {id: "puff", src:"puff.png"},
+    {id: "jaffar", src: "jaffar.png"},
     {id: "trap", src: "trap_tone.png"}
   ];
 
@@ -44,7 +44,7 @@ function happening(){
 }
 
 function genFollower(){
-  radish = new createjs.Bitmap('../css/images/radish.png'); 
+  radish = new createjs.Bitmap('../css/images/radish.png');
   stage.addChild(radish);
   radish.alpha = .5;
   createjs.Ticker.addEventListener("tick", follow);
@@ -62,29 +62,29 @@ function follow(e){
 
 function handleImageLoad(e){
     var jaffarData = {
-    framerate:50, 
+    framerate:50,
     images:[loader.getResult("jaffar")],
     frames:{ count: 24, regX: 33, regY: 25, width:66, height: 50 },
     animations:{
       "wkRight":[0,6, "wkRight"],
       "wkLeft":[7,12, "wkLeft"],
-      "wkUp": [ 13, 18, "wkUp"], 
+      "wkUp": [ 13, 18, "wkUp"],
       "wkDown": [19,23, "wkDown"]
     }
   }
-  var jaffarSheet = new createjs.SpriteSheet(jaffarData); 
+  var jaffarSheet = new createjs.SpriteSheet(jaffarData);
 
   jaffar = new createjs.Sprite(jaffarSheet,"wkRight");
   jaffar.gotoAndPlay("wkRight");
-  jaffar.x = w/2; jaffar.y = h/2; 
+  jaffar.x = w/2; jaffar.y = h/2;
 
-  stage.addChild(jaffar); 
+  stage.addChild(jaffar);
   createjs.Ticker.addEventListener("tick", replaceCursor);
 
   var trapData = {
-    framerate: 10, 
+    framerate: 10,
     images:[loader.getResult("trap")],
-    frames:{ count:8, regX: 20, regY: 25, width: 40, height: 50}, 
+    frames:{ count:8, regX: 20, regY: 25, width: 40, height: 50},
     animations: {
       "static":[0,9, "static"],
     }
@@ -95,7 +95,7 @@ function handleImageLoad(e){
 }
 
 function replaceCursor(){
-  jaffar.scaleX = stage.mouseY/100; 
+  jaffar.scaleX = stage.mouseX/100;
   jaffar.scaleY = stage.mouseY/100;
   jaffar.x = stage.mouseX;
   jaffar.y = stage.mouseY;
@@ -104,20 +104,20 @@ function replaceCursor(){
   if (jaffar.x >= w/2 ){
     jaffar.gotoAndPlay("wkRight");
   }else if(jaffar.x <=  w/2 ){
-    jaffar.gotoAndPlay("wkLeft"); 
+    jaffar.gotoAndPlay("wkLeft");
   }else if(jaffar.y <= h/2){
     jaffar.gotoAndPlay("wkDown");
   }else if(jaffar.y >= h/2){
     jaffar.gotoAndPlay("wkUp");
   }
 
-  stage.update(); 
+  stage.update();
 }
 
 function setTrap(){
-  trap.x = Math.floor(Math.random()*w); 
+  trap.x = Math.floor(Math.random()*w);
   trap.y = Math.floor(Math.random()* (h/2));
-  trap.scaleX = 3; trap.scaleY = 1.5; 
+  trap.scaleX = 3; trap.scaleY = 1.5;
   stage.addChild(trap);
   createjs.Ticker.addEventListener("tick", checkIfFallen);
 }
@@ -129,4 +129,3 @@ function checkIfFallen(){
     }
   });
 }
-

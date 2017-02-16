@@ -8,9 +8,9 @@
 <h1>all the potholes that we've fell through </h1>
 <ul>
 <% Object.keys(places).forEach(function(key){ %>
-    <li><a href ="/places/<%= places[key].id %>"><%= places[key].description %></a></li>
+    <li><a href ="/places/<%= places[key].id %>?max=<%= places.length %>"><%= places[key].description %></a></li>
     <%= places[key].latLng %>
-<% }); %> 
+<% }); %>
 </ul>
 </body>
 </html>

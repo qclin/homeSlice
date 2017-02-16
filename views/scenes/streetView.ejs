@@ -2,25 +2,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
-    <title>the Void</title>
-
+    <title>40 deg lattitude</title>
     <link rel = "stylesheet" type = "text/css" href = "../css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>"></script>
     <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
-    <script src = "js/stAnimation.js"></script>
-    <script src = "js/street.js"></script>
+    <script src = "js/animation/streetView.js"></script>
+    <script src = "js/scene/streetView.js"></script>
     <title>&#8982;&#8990;&#8989;&#8982;</title>
   </head>
-  <body onload="loading();">
+  <body>
     <div id = "distractor">
       <img id ="gif"></img>
         <iframe src="//giphy.com/embed/cxk3z6nMhpf7a" frameBorder="0" style="max-width: 100% height:100%"  class="giphy-embed" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
         we are landing sooon, be patient
     </div>
 
-      <input type = "text" id="comments" placeholder = "where are you?" onkeydown="guess(this)" autofocus autocomplete="off"> </input>
+      <input type = "text" id="comments" placeholder = "where are you?" onkeypress="guess(event)" autofocus autocomplete="off"> </input>
       <h1></h1>
 
     <div id="map-canvas"></div>

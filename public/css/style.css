@@ -1,11 +1,11 @@
-html, body,#map-canvas{ 
+html, body,#map-canvas{
   height: 100%;
   margin: 0px;
   padding: 0px;
   top: .1px;
 }
 #map-canvas{
-  cursor:none;
+  /*cursor:none;*/
 }
 
 .instruction{
@@ -88,10 +88,11 @@ p{
   position: absolute;
   background-color: transparent;
   top: .1px;
-  z-index:1; 
+  z-index:1;
   margin: 0px;
   padding: 0px;
-  cursor:none;
+  /*cursor:none;*/
+  pointer-events: none;
 }
 
 
@@ -115,10 +116,10 @@ nav{
   position: absolute;
   background-color: transparent;
   top: .1px;
-  z-index:1; 
+  z-index:1;
   margin: 0px;
   padding: 0px;
-  cursor:none;
+  /*cursor:none;*/
   pointer-events: none;
 }
 
@@ -130,14 +131,14 @@ nav{
   outline: none;
   background:transparent;
   border: 0;
-  border-bottom: .1em solid #fff; 
+  border-bottom: .1em solid #fff;
   font-weight: bold;
   line-height: 1em;
   text-align: center;
   color:white;
   font-size: 3em;
   margin: 0 auto;
-  float:center; 
+  float:center;
   width:100%;
   top: 50%;
 }
@@ -156,4 +157,13 @@ nav{
 }
 #keys{
   font-size:3em;
+}
+
+.notFoundLatLng{
+  z-index: 100;
+  color: red;
+  font-weight:lighter;
+  margin:0;
+  text-align: center;
+  text-decoration: line-through;
 }
