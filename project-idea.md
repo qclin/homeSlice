@@ -3,13 +3,13 @@ with the desire to explore the limits of the earth plane
 
 ![all places](https://github.com/qclin/homeslice/blob/master/production_images/allPlaces.png)
 
-#### Can the Web portal present transport
+#### Can the Web portal transport
 
   - to wherever it've already documented
 
   - to witness the horizons above
 
-  - the street, and the scenery that one've long lust.
+  - to scenery that one has long lust
 
 
 When **Google** respond. . . can one even distinguish where we've landed?
@@ -26,4 +26,4 @@ Will we guess Connecticut for Croatia, Tennessee for Taiwan?
 
 ![initial idea](https://github.com/qclin/homeslice/blob/master/production_images/idea.png)
 
-[Let's Play](http://qiaoclin.com:1234/)
+## [Let's Play](http://qiaoclin.com:1234/)
